@@ -34,6 +34,8 @@ class Request extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'status_id'], 'integer'],
+            ['user_id', 'default', 'value' => \Yii::$app->user->id],
+            ['status_id', 'default', 'value' => 1],
             [['auto_number'], 'required'],
             [['text'], 'string'],
             [['date'], 'safe'],
@@ -53,8 +55,8 @@ class Request extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'status_id' => 'Status ID',
-            'auto_number' => 'Auto Number',
-            'text' => 'Text',
+            'auto_number' => 'Номер авто',
+            'text' => 'Описание нарушения',
             'date' => 'Date',
         ];
     }

@@ -81,20 +81,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery
      */
-//    public function getRequests()
-//    {
-//        return $this->hasMany(Request::class, ['user_id' => 'id']);
-//    }
-//
-//    /**
-//     * Gets query for [[Role]].
-//     *
-//     * @return \yii\db\ActiveQuery
-//     */
-//    public function getRole()
-//    {
-//        return $this->hasOne(Role::class, ['id' => 'role_id']);
-//    }
+    public function getRequests()
+    {
+        return $this->hasMany(Request::class, ['user_id' => 'id']);
+    }
+
+   /**
+    * Gets query for [[Role]].
+    *
+    * @return \yii\db\ActiveQuery
+    */
+    public function getRole()
+    {
+        return $this->hasOne(Role::class, ['id' => 'role_id']);
+    }
 
     /**
      * Finds an identity by the given ID.
@@ -151,5 +151,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === md5($password);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role->code === "admin";
     }
 }
