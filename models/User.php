@@ -40,10 +40,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['role_id'], 'integer'],
             ['role_id', 'default', 'value' => 1],
             [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name', 'phone'], 'required'],
-            [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name', 'phone'], 'string', 'max' => 255],
+            [['email', 'first_name', 'last_name', 'middle_name', 'phone'], 'string', 'max' => 255],
             [['username'], 'unique'],
+            [['username', 'password'], 'string', 'min' => 6],
+            [['first_name', 'last_name', 'middle_name'], 'match', 'pattern' => '/^[а-яА-ЯёЁ \-]*$/u', 'message' => 'ФИО должно содержать только символы кириллицы и/или тире, пробелы'],
             [['email'], 'unique'],
+            [['email'], 'email'],
             [['phone'], 'unique'],
+            [['phone'], 'match', 'pattern' => '/^\+?7\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}$/', 'message' => 'Шаблон телефона "+7(ХХХ)-ХХХ-ХХ-ХХ"'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
         ];
     }
