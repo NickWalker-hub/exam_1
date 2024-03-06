@@ -16,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Создать', ['class' => 'btn btn-success']) ?>
     </div>

@@ -9,16 +9,12 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Запросы';
+$this->title = 'Панель администратора';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="request-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Создать запрос', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
 
     <?= GridView::widget([
@@ -27,8 +23,32 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'status.name',
+            [
+                'label' => 'Изменить статус',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->status->code === 'new')
+                    {
+                        return Html::a('Подтвердить', ['admin/success', 'id' => $data->id])." / ".Html::a('Отклонить', ['admin/reject', 'id' => $data->id]);
+                    }
+                    return "Изменено";
+                }
+            ],
+            [
+                'label' => 'ФИО заявителя',
+                'value' => function ($data) {
+                    return $data->user->getFullName();
+                }
+            ],
             'auto_number',
             'text:ntext',
+            'date',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Request $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
+            ],
         ],
     ]); ?>
 

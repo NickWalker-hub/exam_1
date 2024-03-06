@@ -37,6 +37,7 @@ class Request extends \yii\db\ActiveRecord
             ['user_id', 'default', 'value' => \Yii::$app->user->id],
             ['status_id', 'default', 'value' => 1],
             [['auto_number'], 'required'],
+            [['auto_number'], 'match', 'pattern' => '/^[A-Z]{2}\d{3}[A-Z]{1}$/', 'message' => 'Формат номера "АА111А" латинскими буквами'],
             [['text'], 'string'],
             [['date'], 'safe'],
             [['auto_number'], 'string', 'max' => 255],

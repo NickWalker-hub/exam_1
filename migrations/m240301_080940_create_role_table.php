@@ -17,6 +17,16 @@ class m240301_080940_create_role_table extends Migration
             'code' => $this->string()->notNull()->unique(),
             'name' => $this->string()->notNull(),
         ]);
+
+        $this->insert('{{%role}}', [
+            'code' => 'user',
+            'name' => 'Пользователь',
+        ]);
+
+        $this->insert('{{%role}}', [
+            'code' => 'admin',
+            'name' => 'Администратор',
+        ]);
     }
 
     /**
@@ -26,4 +36,6 @@ class m240301_080940_create_role_table extends Migration
     {
         $this->dropTable('{{%role}}');
     }
+
+
 }

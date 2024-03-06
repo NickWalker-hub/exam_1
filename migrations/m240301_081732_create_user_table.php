@@ -43,6 +43,17 @@ class m240301_081732_create_user_table extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->insert('{{%user}}', [
+            'role_id' => 2,
+            'username' => 'copp',
+            'password' => md5('password'),
+            'email' => 'copp@gmail.com',
+            'first_name' => 'copp',
+            'last_name' => 'copp',
+            'middle_name' => 'copp',
+            'phone' => '+7(999)999-99-99',
+        ]);
     }
 
     /**
