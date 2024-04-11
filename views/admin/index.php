@@ -43,12 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'auto_number',
             'text:ntext',
             'date',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Request $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
         ],
     ]); ?>
 

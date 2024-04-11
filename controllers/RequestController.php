@@ -92,7 +92,7 @@ class RequestController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                \Yii::$app->getSession()->setFlash('success', 'Создано, епта!');
+                \Yii::$app->getSession()->setFlash('success', 'Создано!');
                 return $this->redirect(['request/index']);
             }
         } else {
